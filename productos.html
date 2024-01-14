@@ -1,0 +1,59 @@
+<!-- SERVICIOS -->
+<!-- CARRO DE COMPRAS -->
+<div id="carrito" class="container mt-3">
+    <h2>Carrito de compras</h2>
+    <ul id="lista-carrito" class="list-group">
+      <!-- Los elementos del carrito se mostrarán aquí -->
+    </ul>
+    <p class="fs-5">Total: $<span id="total-carrito">0.00</span></p>
+  </div>
+  
+<section class="container-fluid">
+    <div class="row w-75 mx-auto servicio-fila">
+      <!-- ... (Otros servicios) ... -->
+      <div class="col-lg-6 col-md-12 col-md-12 d-flex my-5 icono-wrap">
+        <img src="./img/TWICE-Park-Jin-Young.jpg" alt="TwiceGroup" width="180" height="180">
+        <a href="informacion.html" style="text-decoration: none; color: inherit;">
+          <div>
+            <h3 class="fs-5 mt-4 px-4 pb-1">Información de Twice.</h3>
+            <p class="px-4">Conoce más de este grupo surcoreano de <span class="text-primary">K-pop</span> y cómo logró formarse.</p>
+            <button class="btn btn-primary mt-3" onclick="agregarAlCarrito('Información de Twice', 10.99)">Agregar al carrito</button>
+          </div>
+        </a>
+      </div>
+      <!-- ... (Otros servicios) ... -->
+    </div>
+  </section>
+  <script>
+    let carrito = [];
+    let totalCarrito = 0;
+  
+    function agregarAlCarrito(nombre, precio) {
+      const producto = { nombre, precio };
+      carrito.push(producto);
+      totalCarrito += precio;
+  
+      actualizarCarrito();
+    }
+  
+    function actualizarCarrito() {
+      const listaCarrito = document.getElementById('lista-carrito');
+      const totalCarritoElemento = document.getElementById('total-carrito');
+  
+      // Limpiar el carrito previo
+      listaCarrito.innerHTML = '';
+  
+      // Agregar los nuevos elementos al carrito
+      carrito.forEach((producto) => {
+        const listItem = document.createElement('li');
+        listItem.className = 'list-group-item';
+        listItem.textContent = `${producto.nombre} - $${producto.precio.toFixed(2)}`;
+        listaCarrito.appendChild(listItem);
+      });
+  
+      // Actualizar el total del carrito
+      totalCarritoElemento.textContent = totalCarrito.toFixed(2);
+    }
+  </script>
+  
+  
